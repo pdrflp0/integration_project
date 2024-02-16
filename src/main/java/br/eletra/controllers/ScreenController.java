@@ -11,6 +11,7 @@ import java.util.*;
 
 public class ScreenController {
 
+
     @FXML
     private TreeView<String> treeView;
 
@@ -26,8 +27,6 @@ public class ScreenController {
 
     @FXML
     public void initialize() {
-        // Inicializar os modelos para cada linha e subcategoria
-        inicializarModelosPorLinha();
 
         // Criar uma lista com as opções de linha
         ObservableList<String> linhas = FXCollections.observableArrayList(
@@ -40,6 +39,8 @@ public class ScreenController {
 
         // Adicionar um listener para detectar a seleção da linha
         comboBoxLinhas.setOnAction(event -> exibirModelos(comboBoxLinhas.getValue()));
+        // Inicializar os modelos para cada linha e subcategoria
+        inicializarModelosPorLinha();
     }
 
     // Inicializar os modelos para cada linha e subcategoria

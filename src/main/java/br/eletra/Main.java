@@ -12,8 +12,12 @@ import java.util.Objects;
 
 public class Main extends Application {
 
+    private static final int WIDTH = 900;
+    private static final int HEIGHT = 625;
+
     @Override
     public void start(Stage primaryStage) throws Exception {
+
         // Caminho relativo para o arquivo de ícone dentro da pasta do projeto
         String iconePath = "ícone.png";
 
@@ -38,22 +42,24 @@ public class Main extends Application {
         Parent root = loader.load();
 
         // Configurar a cena
-        Scene scene = new Scene(root);
-
-        // Definir a cena na janela principal
+        Scene scene = new Scene(root, WIDTH, HEIGHT);
         primaryStage.setScene(scene);
         primaryStage.setTitle("Projeto de Integração");
-        primaryStage.setTitle(primaryStage.getTitle()); // Isso força a atribuição da classe CSS ao título
-        primaryStage.getScene().getStylesheets().add(Objects.requireNonNull(getClass().getResource("/styles.css")).toExternalForm());
-        primaryStage.show();
+        primaryStage.setMinWidth(WIDTH);
+        primaryStage.setMaxWidth(WIDTH);
+        primaryStage.setMinHeight(HEIGHT);
+        primaryStage.setMaxHeight(HEIGHT);
 
-        // Carregue o arquivo CSS diretamente no Stage
+        // Carregar o arquivo CSS diretamente no Stage
         String cssPath = Objects.requireNonNull(getClass().getResource("/styles.css")).toExternalForm();
         if (cssPath != null) {
             primaryStage.getScene().getStylesheets().add(cssPath);
         } else {
             System.out.println("Erro: Arquivo CSS não encontrado.");
         }
+
+        // Exibindo a janela principal
+        primaryStage.show();
     }
 
     public static void main(String[] args) {
