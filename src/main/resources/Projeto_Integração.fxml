@@ -5,23 +5,23 @@
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="441.0" prefWidth="838.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.eletra.controllers.ScreenController" stylesheets="@styles.css">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="441.0" prefWidth="838.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.eletra.controllers.ScreenController">
     <Label layoutX="13.0" layoutY="7.0" prefHeight="0.0" prefWidth="132.0" text="Autor: Pedro Felipe">
         <font>
             <Font name="Berlin Sans FB" size="12.0" />
         </font>
     </Label>
     <Rectangle arcHeight="5.0" arcWidth="5.0" height="3.0" layoutX="9.0" layoutY="25.0" stroke="BLACK" strokeType="INSIDE" width="820.0" />
-    <TitledPane layoutX="13.0" layoutY="40.0" prefHeight="80.0" prefWidth="813.0" styleClass="titled-pane" text="Linhas">
+    <TitledPane layoutX="13.0" layoutY="40.0" prefHeight="80.0" prefWidth="813.0" text="Linhas">
         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="300.0" prefWidth="200.0">
-            <ComboBox fx:id="comboBoxLinhas" layoutX="159.0" layoutY="14.0" prefHeight="25.0" prefWidth="189.0" styleClass="combo-box" />
-            <Label layoutX="39.0" layoutY="17.0" text="Selecione uma linha:" />
+            <ComboBox fx:id="comboBoxLinhas" layoutX="163.0" layoutY="14.0" prefHeight="25.0" prefWidth="190.0" />
+            <Label layoutX="41.0" layoutY="17.0" text="Selecione uma linha:" />
         </AnchorPane>
     </TitledPane>
-    <TitledPane layoutX="13.0" layoutY="120.0" prefHeight="233.0" prefWidth="813.0" styleClass="titled-pane" text="Modelos">
+    <TitledPane layoutX="13.0" layoutY="120.0" prefHeight="233.0" prefWidth="813.0" text="Modelos">
         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="86.0" prefWidth="811.0">
-            <TreeView layoutX="159.0" layoutY="14.0" prefHeight="182.0" prefWidth="190.0" styleClass="tree-view" />
-            <Label layoutX="56.0" layoutY="14.0" styleClass="label" text="Lista de modelos:" />
+            <Label layoutX="60.0" layoutY="14.0" text="Lista de modelos:" />
+            <TreeView fx:id="treeView" layoutX="164.0" layoutY="13.0" prefHeight="182.0" prefWidth="190.0" />
         </AnchorPane>
     </TitledPane>
 </Pane>

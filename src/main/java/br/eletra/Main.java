@@ -4,8 +4,8 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.stage.Stage;
 import javafx.scene.image.Image;
+import javafx.stage.Stage;
 
 import java.io.File;
 import java.util.Objects;
@@ -42,7 +42,7 @@ public class Main extends Application {
 
         // Definir a cena na janela principal
         primaryStage.setScene(scene);
-        primaryStage.setTitle("Projeto de integração");
+        primaryStage.setTitle("Projeto de Integração");
         primaryStage.setTitle(primaryStage.getTitle()); // Isso força a atribuição da classe CSS ao título
         primaryStage.getScene().getStylesheets().add(Objects.requireNonNull(getClass().getResource("/styles.css")).toExternalForm());
         primaryStage.show();
