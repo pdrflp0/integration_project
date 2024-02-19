@@ -3,20 +3,23 @@ package br.eletra.controllers;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.TreeItem;
-import javafx.scene.control.TreeView;
+import javafx.scene.control.*;
 
 import java.util.*;
 
 public class ScreenController {
 
+    @FXML
+    private TitledPane titledPaneModelos;
 
     @FXML
     private TreeView<String> treeView;
 
     @FXML
     private ComboBox<String> comboBoxLinhas;
+
+    @FXML
+    private Accordion accordion;
 
     // Mapa para armazenar os modelos por linha e subcategoria
     private final Map<String, Map<String, List<String>>> modelosPorLinha = new HashMap<>();
@@ -27,6 +30,7 @@ public class ScreenController {
 
     @FXML
     public void initialize() {
+        titledPaneModelos.setDisable(true);
 
         // Criar uma lista com as opções de linha
         ObservableList<String> linhas = FXCollections.observableArrayList(
@@ -38,9 +42,20 @@ public class ScreenController {
         comboBoxLinhas.setItems(linhas);
 
         // Adicionar um listener para detectar a seleção da linha
-        comboBoxLinhas.setOnAction(event -> exibirModelos(comboBoxLinhas.getValue()));
+        comboBoxLinhas.setOnAction(event -> handleSelecaoLinha());
+
         // Inicializar os modelos para cada linha e subcategoria
         inicializarModelosPorLinha();
+    }
+
+    // Método para lidar com a seleção de linha no ComboBox
+    @FXML
+    private void handleSelecaoLinha() {
+        String linhaSelecionada = comboBoxLinhas.getValue();
+        if (linhaSelecionada != null) {
+            titledPaneModelos.setDisable(false); // Habilita o TitledPane de Modelos
+            exibirModelos(linhaSelecionada); // Exibe os modelos correspondentes à linha selecionada
+        }
     }
 
     // Inicializar os modelos para cada linha e subcategoria
@@ -100,7 +115,14 @@ public class ScreenController {
                     rootItem.getChildren().add(subcategoriaItem);
                 }
                 treeView.setRoot(rootItem);
+                expandirModelos(); // Chamada para expandir o TitledPane de Modelos
             }
         }
+    }
+
+    // Método para expandir o TitledPane de Modelos
+    private void expandirModelos() {
+        titledPaneModelos.setExpanded(true);
+        accordion.setExpandedPane(accordion.getPanes().get(1)); // Índice 1 corresponde ao TitledPane de Modelos
     }
 }
