@@ -22,10 +22,7 @@ public class Main extends Application {
         File iconFile = new File(iconePath);
         if (iconFile.exists()) { // Verifique se o arquivo de ícone existe antes de tentar carregá-lo
             Image icon = new Image(iconFile.toURI().toString());  // Carregue a imagem do ícone
-
             primaryStage.getIcons().add(icon); // Defina o ícone da janela principal
-        } else {
-            System.out.println("Error: Icon not found.");
         }
 
         FXMLLoader loader = new FXMLLoader(); // Criando o objeto FXML
@@ -47,8 +44,6 @@ public class Main extends Application {
         String cssPath = Objects.requireNonNull(getClass().getResource("/styles.css")).toExternalForm();
         if (cssPath != null) {
             primaryStage.getScene().getStylesheets().add(cssPath);
-        } else {
-            System.out.println("Error: CSS file not found.");
         }
 
         primaryStage.show();

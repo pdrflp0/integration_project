@@ -23,9 +23,6 @@ public class screencontroller {
     // Mapa para armazenar os modelos por linha e subcategoria
     private final Map<String, Map<String, List<String>>> modelsPerLine = new HashMap<>();
 
-    public screencontroller() { // Construtor sem argumentos
-    }
-
     @FXML
     public void initialize() {
         titledPaneModels.setDisable(true);
