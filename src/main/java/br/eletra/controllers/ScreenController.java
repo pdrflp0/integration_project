@@ -4,125 +4,117 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-
 import java.util.*;
 
-public class ScreenController {
+public class screencontroller {
 
     @FXML
-    private TitledPane titledPaneModelos;
+    private TitledPane titledPaneModels;
 
     @FXML
     private TreeView<String> treeView;
 
     @FXML
-    private ComboBox<String> comboBoxLinhas;
+    private ComboBox<String> comboBoxLines;
 
     @FXML
     private Accordion accordion;
 
     // Mapa para armazenar os modelos por linha e subcategoria
-    private final Map<String, Map<String, List<String>>> modelosPorLinha = new HashMap<>();
+    private final Map<String, Map<String, List<String>>> modelsPerLine = new HashMap<>();
 
-    // Construtor sem argumentos
-    public ScreenController() {
+    public screencontroller() { // Construtor sem argumentos
     }
 
     @FXML
     public void initialize() {
-        titledPaneModelos.setDisable(true);
+        titledPaneModels.setDisable(true);
 
         // Criar uma lista com as opções de linha
-        ObservableList<String> linhas = FXCollections.observableArrayList(
+        ObservableList<String> lines = FXCollections.observableArrayList(
                 "Cronos",
                 "Ares"
         );
 
-        // Adicionar as opções de linha ao ComboBox
-        comboBoxLinhas.setItems(linhas);
+        comboBoxLines.setItems(lines); // Adicionar as opções de linha ao ComboBox
+        comboBoxLines.setOnAction(event -> handleLineSelection());   // Adicionar um listener para detectar a seleção da linha
 
-        // Adicionar um listener para detectar a seleção da linha
-        comboBoxLinhas.setOnAction(event -> handleSelecaoLinha());
-
-        // Inicializar os modelos para cada linha e subcategoria
-        inicializarModelosPorLinha();
+        initializeModelsByLine(); // Inicializar os modelos para cada linha e subcategoria
     }
 
     // Método para lidar com a seleção de linha no ComboBox
     @FXML
-    private void handleSelecaoLinha() {
-        String linhaSelecionada = comboBoxLinhas.getValue();
-        if (linhaSelecionada != null) {
-            titledPaneModelos.setDisable(false); // Habilita o TitledPane de Modelos
-            exibirModelos(linhaSelecionada); // Exibe os modelos correspondentes à linha selecionada
+    private void handleLineSelection() {
+        String selectedLine = comboBoxLines.getValue();
+        if (selectedLine != null) {
+            titledPaneModels.setDisable(false); // Habilita o TitledPane de Modelos
+            displayModels(selectedLine); // Exibe os modelos correspondentes à linha selecionada
         }
     }
 
     // Inicializar os modelos para cada linha e subcategoria
-    private void inicializarModelosPorLinha() {
-        // Modelos para a linha Cronos
-        Map<String, List<String>> modelosCronos = new LinkedHashMap<>();
-        List<String> modelosCronosOld = new ArrayList<>();
-        modelosCronosOld.add("Cronos 6001-A");
-        modelosCronosOld.add("Cronos 6003");
-        modelosCronosOld.add("Cronos 7023");
-        modelosCronos.put("Cronos Old", modelosCronosOld);
+    private void initializeModelsByLine() {
+        Map<String, List<String>> modelsCronos = new LinkedHashMap<>();
+        List<String> modelsCronosOld = new ArrayList<>();
+        modelsCronosOld.add("Cronos 6001-A");
+        modelsCronosOld.add("Cronos 6003");
+        modelsCronosOld.add("Cronos 7023");
+        modelsCronos.put("Cronos Old", modelsCronosOld);
 
-        List<String> modelosCronosL = new ArrayList<>();
-        modelosCronosL.add("Cronos 6021L");
-        modelosCronosL.add("Cronos 7023L");
-        modelosCronos.put("Cronos L", modelosCronosL);
+        List<String> modelsCronosL = new ArrayList<>();
+        modelsCronosL.add("Cronos 6021L");
+        modelsCronosL.add("Cronos 7023L");
+        modelsCronos.put("Cronos L", modelsCronosL);
 
-        List<String> modelosCronosNG = new ArrayList<>();
-        modelosCronosNG.add("Cronos 6001‑NG");
-        modelosCronosNG.add("Cronos 6003‑NG");
-        modelosCronosNG.add("Cronos 6021‑NG");
-        modelosCronosNG.add("Cronos 6031‑NG");
-        modelosCronosNG.add("Cronos 7021‑NG");
-        modelosCronosNG.add("Cronos 7023‑NG");
-        modelosCronos.put("Cronos-NG", modelosCronosNG);
+        List<String> modelsCronosNG = new ArrayList<>();
+        modelsCronosNG.add("Cronos 6001‑NG");
+        modelsCronosNG.add("Cronos 6003‑NG");
+        modelsCronosNG.add("Cronos 6021‑NG");
+        modelsCronosNG.add("Cronos 6031‑NG");
+        modelsCronosNG.add("Cronos 7021‑NG");
+        modelsCronosNG.add("Cronos 7023‑NG");
+        modelsCronos.put("Cronos-NG", modelsCronosNG);
 
-        // Modelos para a linha Ares
-        Map<String, List<String>> modelosAres = new LinkedHashMap<>();
-        List<String> modelosAresTB = new ArrayList<>();
-        modelosAresTB.add("Ares 7021");
-        modelosAresTB.add("Ares 7031");
-        modelosAresTB.add("Ares 7023");
-        modelosAres.put("Ares TB", modelosAresTB);
+        Map<String, List<String>> modelsAres = new LinkedHashMap<>();
+        List<String> modelsAresTB = new ArrayList<>();
+        modelsAresTB.add("Ares 7021");
+        modelsAresTB.add("Ares 7031");
+        modelsAresTB.add("Ares 7023");
+        modelsAres.put("Ares TB", modelsAresTB);
 
-        List<String> modeloAresTHS = new ArrayList<>();
-        modeloAresTHS.add("Ares 8023 15");
-        modeloAresTHS.add("Ares 8023 200");
-        modeloAresTHS.add("Ares 8023 2,5");
-        modelosAres.put("Ares THS", modeloAresTHS);
+        List<String> modelsAresTHS = new ArrayList<>();
+        modelsAresTHS.add("Ares 8023 15");
+        modelsAresTHS.add("Ares 8023 200");
+        modelsAresTHS.add("Ares 8023 2,5");
+        modelsAres.put("Ares THS", modelsAresTHS);
 
-        modelosPorLinha.put("Cronos", modelosCronos);
-        modelosPorLinha.put("Ares", modelosAres);
+        modelsPerLine.put("Cronos", modelsCronos);
+        modelsPerLine.put("Ares", modelsAres);
     }
 
     // Exibir os modelos correspondentes à linha selecionada
-    private void exibirModelos(String linhaSelecionada) {
-        if (linhaSelecionada != null) {
-            Map<String, List<String>> subcategorias = modelosPorLinha.get(linhaSelecionada);
-            if (subcategorias != null) {
-                TreeItem<String> rootItem = new TreeItem<>(linhaSelecionada);
-                for (String subcategoria : subcategorias.keySet()) {
-                    TreeItem<String> subcategoriaItem = new TreeItem<>(subcategoria);
-                    List<String> modelos = subcategorias.get(subcategoria);
-                    for (String modelo : modelos) {
-                        subcategoriaItem.getChildren().add(new TreeItem<>(modelo));
+    private void displayModels(String selectedLine) {
+        if (selectedLine != null) {
+            Map<String, List<String>> subcategories = modelsPerLine.get(selectedLine);
+            if (subcategories != null) {
+                TreeItem<String> rootItem = new TreeItem<>(selectedLine);
+                for (String subcategory : subcategories.keySet()) {
+                    TreeItem<String> subcategoryItem = new TreeItem<>(subcategory);
+                    List<String> models = subcategories.get(subcategory);
+                    for (String model : models) {
+                        subcategoryItem.getChildren().add(new TreeItem<>(model));
                     }
-                    rootItem.getChildren().add(subcategoriaItem);
+                    rootItem.getChildren().add(subcategoryItem);
                 }
                 treeView.setRoot(rootItem);
-                expandirModelos(); // Chamada para expandir o TitledPane de Modelos
+                expandModels(); // Chamada para expandir o TitledPane de Modelos
             }
         }
     }
 
     // Método para expandir o TitledPane de Modelos
-    private void expandirModelos() {
-        titledPaneModelos.setExpanded(true);
+    private void expandModels() {
+        titledPaneModels.setExpanded(true);
         accordion.setExpandedPane(accordion.getPanes().get(1)); // Índice 1 corresponde ao TitledPane de Modelos
     }
 }

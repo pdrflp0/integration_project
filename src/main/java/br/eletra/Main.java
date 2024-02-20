@@ -6,7 +6,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
-
 import java.io.File;
 import java.util.Objects;
 
@@ -18,33 +17,27 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
 
-        // Caminho relativo para o arquivo de ícone dentro da pasta do projeto
-        String iconePath = "ícone.png";
+        String iconePath = "icon.png"; // Caminho para o arquivo do ícone
 
-        // Verifique se o arquivo de ícone existe antes de tentar carregá-lo
-        File iconeFile = new File(iconePath);
-        if (iconeFile.exists()) {
-            // Carregue a imagem do ícone
-            Image icon = new Image(iconeFile.toURI().toString());
+        File iconFile = new File(iconePath);
+        if (iconFile.exists()) { // Verifique se o arquivo de ícone existe antes de tentar carregá-lo
+            Image icon = new Image(iconFile.toURI().toString());  // Carregue a imagem do ícone
 
-            // Defina o ícone da janela principal
-            primaryStage.getIcons().add(icon);
+            primaryStage.getIcons().add(icon); // Defina o ícone da janela principal
         } else {
-            // Se o arquivo de ícone não for encontrado, imprima uma mensagem de aviso
-            System.out.println("Erro: Ícone não encontrado.");
+            System.out.println("Error: Icon not found.");
         }
 
-        // Criando o objeto FXML
-        FXMLLoader loader = new FXMLLoader();
+        FXMLLoader loader = new FXMLLoader(); // Criando o objeto FXML
 
         // Carregar o arquivo FXML
-        loader.setLocation(getClass().getResource("/Projeto_Integração.fxml"));
+        loader.setLocation(getClass().getResource("/integration_project.fxml"));
         Parent root = loader.load();
 
         // Configurar a cena
         Scene scene = new Scene(root, WIDTH, HEIGHT);
         primaryStage.setScene(scene);
-        primaryStage.setTitle("Projeto de Integração");
+        primaryStage.setTitle("Projeto de integração");
         primaryStage.setMinWidth(WIDTH);
         primaryStage.setMaxWidth(WIDTH);
         primaryStage.setMinHeight(HEIGHT);
@@ -55,10 +48,9 @@ public class Main extends Application {
         if (cssPath != null) {
             primaryStage.getScene().getStylesheets().add(cssPath);
         } else {
-            System.out.println("Erro: Arquivo CSS não encontrado.");
+            System.out.println("Error: CSS file not found.");
         }
 
-        // Exibindo a janela principal
         primaryStage.show();
     }
 

@@ -13,7 +13,7 @@
 .combo-box .arrow-button .arrow {
     -fx-background-color: -fx-mark-highlight-color, -fx-mark-color;
     -fx-background-insets: 0;
-    -fx-padding: 0.333333em 0.666667em 0.333333em 0.666667em; /* ajuste o padding conforme necessário */
+    -fx-padding: 0.333333em 0.666667em 0.333333em 0.666667em;
 }
 
 .combo-box .text-field {
